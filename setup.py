@@ -10,7 +10,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'word2xwiki=word2xwiki:main',
+            'word2xwiki=word2xwiki.word2xwiki:main',
         ],
     },
 )
