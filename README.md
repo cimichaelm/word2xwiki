@@ -55,8 +55,10 @@ This project is licensed under the MIT License.
 Ensure your directory structure looks like this:
 ```
 word2xwiki/
-├── word2xwiki.py
-├── config.yaml
+├── word2xwiki
+├   └── word2xwiki.py
+├── conf
+├   └── config.yaml
 ├── setup.py
 ├── README.md
 └── tests/
