@@ -1,0 +1,5 @@
+directory: "path/to/your/directory"
+xwiki_url: "http://your-xwiki-instance"
+space: "YourSpace"
+username: "your-username"
+password: "your-password"
