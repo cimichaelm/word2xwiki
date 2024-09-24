@@ -14,6 +14,11 @@ This Python program converts Word documents (.docx) to XWiki format and uploads 
     ```bash
     pip install .
     ```
+3. Install pandoc
+
+    ```bash
+   sudo apt-get install pandoc
+    ```
 
 ## Configuration
 
