@@ -9,11 +9,12 @@ import yaml
 import argparse
 
 class WordToXWikiConverter:
-    def __init__(self, config_path, dryrun=False):
+    def __init__(self, config_path, dryrun=False, debug=False, verbose=False):
         """Initialize the converter with the configuration file."""
         self.load_config(config_path)
         self.dryrun = dryrun
-        self.debug = True
+        self.debug = debug
+        self.verbose = verbose
         
     def load_config(self, config_path):
         """Load configuration parameters from a YAML file."""
@@ -59,6 +60,10 @@ class WordToXWikiConverter:
         docx_files = self.traverse_directory()
         for doc_path in docx_files:
             page = os.path.splitext(os.path.basename(doc_path))[0]
+            if self.verbose:
+                msg = "Processing: {0}".format(page)
+                print(msg)
+
             try:
                 xwiki_content = self.convert_to_xwiki(doc_path)
                 if not self.dryrun:
@@ -76,10 +81,11 @@ def main():
     parser = argparse.ArgumentParser(description='Convert Word documents to XWiki format and import them into XWiki.')
     parser.add_argument('-c', '--config', required=True, help='Path to the configuration file')
     parser.add_argument('-n', '--dryrun', required=False, action='store_true', help='Dry run. Do not upload')
-    parser.add_argument('-d', '--debug', required=False, action='store_true', help='Debug mode')        
+    parser.add_argument('-d', '--debug', required=False, action='store_true', help='Debug mode')
+    parser.add_argument('-v', '--verbose', required=False, action='store_true', help='Verbose mode')
     args = parser.parse_args()
 
-    converter = WordToXWikiConverter(args.config,args.dryrun)
+    converter = WordToXWikiConverter(args.config,dryrun=args.dryrun,debug=args.debug,verbose=args.verbose)
     converter.process_files()
 
 if __name__ == "__main__":
