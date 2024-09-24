@@ -6,7 +6,7 @@ This Python program converts Word documents (.docx) to XWiki format and uploads 
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/word2xwiki.git
+    git clone https://github.com/cimichaelm/word2xwiki.git
     cd word2xwiki
     ```
 
@@ -68,7 +68,7 @@ word2xwiki/
 ### How to Install and Run
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/word2xwiki.git
+    git clone https://github.com/cimichaelm/word2xwiki.git
     cd word2xwiki
     ```
 
