@@ -97,3 +97,13 @@ word2xwiki/
 
 This setup allows you to traverse all Word files in a directory and subdirectories, convert each file to XWiki format using `pandoc`, and upload the converted content to XWiki. All parameters are read from a YAML configuration file, and the code is organized into a class with methods for each function. The program can be installed and run using `setuptools`, and unit tests are provided to ensure the functionality works as expected. Comments are added to each method for clarity, and a README file provides documentation.
 
+## Authors
+
+- Michael Moscovitch
+
+## Acknowledgements
+
+- AI was used to create the skeleton for this code
+
+
+
