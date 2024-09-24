@@ -71,7 +71,7 @@ class WordToXWikiConverter:
                     if status_code == 200:
                         print(f"Content from {doc_path} imported successfully!")
                     else:
-                        print(f"Failed to import content from {doc_path}. Status code: {status_code}")
+                        print(f"ERROR: Failed to import content from {doc_path}. Status code: {status_code}")
                     if self.debug:
                         print(response_text)
             except Exception as e:
