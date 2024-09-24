@@ -9,10 +9,11 @@ import yaml
 import argparse
 
 class WordToXWikiConverter:
-    def __init__(self, config_path):
+    def __init__(self, config_path, dryrun=False):
         """Initialize the converter with the configuration file."""
         self.load_config(config_path)
-
+        self.dryrun = dryrun
+        
     def load_config(self, config_path):
         """Load configuration parameters from a YAML file."""
         with open(config_path, 'r') as file:
@@ -55,12 +56,13 @@ class WordToXWikiConverter:
             page = os.path.splitext(os.path.basename(doc_path))[0]
             try:
                 xwiki_content = self.convert_to_xwiki(doc_path)
-                status_code, response_text = self.import_to_xwiki(page, xwiki_content)
-                if status_code == 200:
-                    print(f"Content from {doc_path} imported successfully!")
-                else:
-                    print(f"Failed to import content from {doc_path}. Status code: {status_code}")
-                    print(response_text)
+                if not self.dryrun:
+                    status_code, response_text = self.import_to_xwiki(page, xwiki_content)
+                    if status_code == 200:
+                        print(f"Content from {doc_path} imported successfully!")
+                    else:
+                        print(f"Failed to import content from {doc_path}. Status code: {status_code}")
+                        print(response_text)
             except Exception as e:
                 print(f"An error occurred while processing {doc_path}: {e}")
 
@@ -68,9 +70,10 @@ def main():
     """Main function to parse arguments and start the conversion process."""
     parser = argparse.ArgumentParser(description='Convert Word documents to XWiki format and import them into XWiki.')
     parser.add_argument('-c', '--config', required=True, help='Path to the configuration file')
+    parser.add_argument('-n', '--dryrun', required=False, help='Dry run. Do not upload')    
     args = parser.parse_args()
 
-    converter = WordToXWikiConverter(args.config)
+    converter = WordToXWikiConverter(args.config,args.dryrun)
     converter.process_files()
 
 if __name__ == "__main__":
