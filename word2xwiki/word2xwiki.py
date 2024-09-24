@@ -72,6 +72,7 @@ class WordToXWikiConverter:
                         print(f"Content from {doc_path} imported successfully!")
                     else:
                         print(f"Failed to import content from {doc_path}. Status code: {status_code}")
+                    if self.debug:
                         print(response_text)
             except Exception as e:
                 print(f"An error occurred while processing {doc_path}: {e}")
