@@ -1,6 +1,8 @@
 #
 # file: word2xwiki.py
+# author: Michael Moscovitch
 #
+
 import os
 import glob
 import subprocess
@@ -15,7 +17,8 @@ class WordToXWikiConverter:
         self.dryrun = dryrun
         self.debug = debug
         self.verbose = verbose
-        
+        self.syntax = "xwiki"
+
     def load_config(self, config_path):
         """Load configuration parameters from a YAML file."""
         with open(config_path, 'r') as file:
@@ -33,7 +36,7 @@ class WordToXWikiConverter:
 
     def convert_to_xwiki(self, doc_path):
         """Convert a Word document to XWiki format using pandoc."""
-        result = subprocess.run(['pandoc', doc_path, '-t', 'xwiki'], capture_output=True, text=True)
+        result = subprocess.run(['pandoc', doc_path, '-t', self.syntax ], capture_output=True, text=True)
         if result.returncode != 0:
             raise Exception(f"Error converting document: {result.stderr}")
 
