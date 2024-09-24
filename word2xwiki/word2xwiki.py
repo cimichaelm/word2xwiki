@@ -13,7 +13,7 @@ class WordToXWikiConverter:
         """Initialize the converter with the configuration file."""
         self.load_config(config_path)
         self.dryrun = dryrun
-        self.debug = true
+        self.debug = True
         
     def load_config(self, config_path):
         """Load configuration parameters from a YAML file."""
