@@ -89,6 +89,7 @@ word2xwiki/
 
 ## Issues
 
+- unit tests are setup correctly so they dont work
 - some of the formatting information is not preserved such as color.
 
 
