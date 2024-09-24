@@ -70,7 +70,7 @@ def main():
     """Main function to parse arguments and start the conversion process."""
     parser = argparse.ArgumentParser(description='Convert Word documents to XWiki format and import them into XWiki.')
     parser.add_argument('-c', '--config', required=True, help='Path to the configuration file')
-    parser.add_argument('-n', '--dryrun', required=False, help='Dry run. Do not upload')    
+    parser.add_argument('-n', '--dryrun', required=False, action='store_true', help='Dry run. Do not upload')    
     args = parser.parse_args()
 
     converter = WordToXWikiConverter(args.config,args.dryrun)
