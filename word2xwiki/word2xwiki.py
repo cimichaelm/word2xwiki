@@ -13,6 +13,7 @@ class WordToXWikiConverter:
         """Initialize the converter with the configuration file."""
         self.load_config(config_path)
         self.dryrun = dryrun
+        self.debug = true
         
     def load_config(self, config_path):
         """Load configuration parameters from a YAML file."""
@@ -34,6 +35,10 @@ class WordToXWikiConverter:
         result = subprocess.run(['pandoc', doc_path, '-t', 'xwiki'], capture_output=True, text=True)
         if result.returncode != 0:
             raise Exception(f"Error converting document: {result.stderr}")
+
+        if self.debug:
+            print(result.stdout)
+
         return result.stdout
 
     def import_to_xwiki(self, page, content):
@@ -70,7 +75,8 @@ def main():
     """Main function to parse arguments and start the conversion process."""
     parser = argparse.ArgumentParser(description='Convert Word documents to XWiki format and import them into XWiki.')
     parser.add_argument('-c', '--config', required=True, help='Path to the configuration file')
-    parser.add_argument('-n', '--dryrun', required=False, action='store_true', help='Dry run. Do not upload')    
+    parser.add_argument('-n', '--dryrun', required=False, action='store_true', help='Dry run. Do not upload')
+    parser.add_argument('-d', '--debug', required=False, action='store_true', help='Debug mode')        
     args = parser.parse_args()
 
     converter = WordToXWikiConverter(args.config,args.dryrun)
